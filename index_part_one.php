@@ -119,20 +119,6 @@ usort($transactions, function($a, $b) {
     return $b['amount'] - $a['amount'];
 });
 
-// Вывод результатов для тестирования
-echo calculateTotalAmount($transactions);
-echo '<br><br><br>';
-print_r(findTransactionByDescription($transactions, "Payment for groceries"));
-echo '<br><br><br>';
-print_r(findTransactionById($transactions, 2));
-echo '<br><br><br>';
-print_r(daysSinceTransaction("2019-01-01"));
-echo '<br><br><br>';
-print_r(addTransaction(3, "2014-01-01", 34.23, "sampledesc", "samplemerch"));
-echo '<br><br><br>';
-print_r($transactions);
-echo '<br><br><br>';
-
 ?>
 
 <!DOCTYPE html>
