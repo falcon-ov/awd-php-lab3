@@ -24,9 +24,6 @@ $transactions = [
     ],
 ];
 
-// Установка глобальной переменной
-$GLOBALS['transactions'] = $transactions;
-
 /**
  * Вычисляет общую сумму всех транзакций
  *
@@ -35,8 +32,7 @@ $GLOBALS['transactions'] = $transactions;
  */
 function calculateTotalAmount(array $transactions): float
 {
-    $total = array_sum(array_column($transactions, 'amount'));
-    return $total;
+    return array_sum(array_column($transactions, 'amount'));
 }
 
 /**
@@ -48,10 +44,9 @@ function calculateTotalAmount(array $transactions): float
  */
 function findTransactionByDescription(array $transactions, string $descriptionPart): array
 {
-    $result = array_filter($transactions, function ($transaction) use ($descriptionPart) {
+    return array_filter($transactions, function ($transaction) use ($descriptionPart) {
         return $transaction['description'] === $descriptionPart;
     });
-    return $result;
 }
 
 /**
@@ -63,10 +58,9 @@ function findTransactionByDescription(array $transactions, string $descriptionPa
  */
 function findTransactionById(array $transactions, int $id): array
 {
-    $result = array_filter($transactions, function ($transaction) use ($id) {
+    return array_filter($transactions, function ($transaction) use ($id) {
         return $transaction['id'] === $id;
     });
-    return $result;
 }
 
 /**
@@ -156,18 +150,15 @@ usort($transactions, function($a, $b) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($transactions as $transaction) {
-                echo "
+            <?php foreach ($transactions as $transaction) { ?>
             <tr>
-                <td>{$transaction['id']}</td>
-                <td>{$transaction['date']}</td>
-                <td>" . number_format($transaction['amount']) . "</td>
-                <td>{$transaction['description']}</td>
-                <td>{$transaction['merchant']}</td>
+                <td><?php echo $transaction['id']; ?></td>
+                <td><?php echo $transaction['date']; ?></td>
+                <td><?php echo number_format($transaction['amount']); ?></td>
+                <td><?php echo $transaction['description']; ?></td>
+                <td><?php echo $transaction['merchant']; ?></td>
             </tr>
-             ";
-            }
-            ?>
+            <?php } ?>
         </tbody>
     </table>
 </body>
